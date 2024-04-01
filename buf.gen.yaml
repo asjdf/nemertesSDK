@@ -1,0 +1,22 @@
+#  command: buf generate
+version: v1
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/proto
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc/go
+    out: gen/proto
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/gateway
+    out: gen/proto
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/openapiv2
+    out: gen/openapi
+  - plugin: grpc-gateway-ts
+    out: gen/proto
+    opt:
+      - use_proto_names=true
+      - paths=source_relative

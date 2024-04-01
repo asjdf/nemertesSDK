@@ -1,0 +1,9 @@
+syntax = "proto3";
+package user.v1;
+
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/user/v1;userV1";
+
+message User {
+  string id = 1;
+  string nickName = 2;
+}

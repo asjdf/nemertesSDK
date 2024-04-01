@@ -1,0 +1,101 @@
+syntax = "proto3";
+package team.v1;
+
+import "google/api/annotations.proto";
+import "team/v1/team.proto";
+
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/team/v1;teamV1";
+
+service TeamService {
+  rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse) {
+    // CreateTeam creates a team.
+    option (google.api.http) = {post: "/gapi/team/v1/create"};
+  }
+  rpc GetTeamList(GetTeamListRequest) returns (GetTeamListResponse) {
+    // GetTeamList returns a list of teams that the user is a member of.
+    option (google.api.http) = {get: "/gapi/team/v1/list"};
+  }
+  rpc GetTeamInfo(GetTeamInfoRequest) returns (GetTeamInfoResponse) {
+    // GetTeamInfo returns the team info.
+    option (google.api.http) = {get: "/gapi/team/v1/info"};
+  }
+  rpc UpdateTeamInfo(UpdateTeamInfoRequest) returns (UpdateTeamInfoResponse) {
+    // EditTeamInfo edits the team info.
+    option (google.api.http) = {put: "/gapi/team/v1/info"};
+  }
+
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {
+    // CreateProject creates a project.
+    option (google.api.http) = {post: "/gapi/team/v1/project/create"};
+  }
+  rpc GetProjectList(GetProjectListRequest) returns (GetProjectListResponse) {
+    // GetProjectList returns a list of projects that the user is a member of.
+    option (google.api.http) = {get: "/gapi/team/v1/project/list"};
+  }
+  rpc GetProjectInfo(GetProjectInfoRequest) returns (GetProjectInfoResponse) {
+    // GetProjectInfo returns the project info.
+    option (google.api.http) = {get: "/gapi/team/v1/project/info"};
+  }
+  rpc UpdateProjectInfo(UpdateProjectInfoRequest) returns (UpdateProjectInfoResponse) {
+    // EditProjectInfo edits the project info.
+    option (google.api.http) = {put: "/gapi/team/v1/project/info"};
+  }
+}
+
+message CreateTeamRequest {
+  Team team = 1;
+}
+message CreateTeamResponse {
+  Team team = 1;
+}
+
+message GetTeamListRequest {
+  string userId = 1; // if userId is empty, it will return all teams
+}
+message GetTeamListResponse {
+  repeated Team teams = 1;
+}
+
+message GetTeamInfoRequest {
+  string id = 1; // team id
+}
+message GetTeamInfoResponse {
+  Team team = 1;
+}
+
+message UpdateTeamInfoRequest {
+  Team team = 1;
+}
+message UpdateTeamInfoResponse {
+  Team team = 1;
+}
+
+message CreateProjectRequest {
+  Project project = 1;
+}
+
+message CreateProjectResponse {
+  Project project = 1;
+}
+
+message GetProjectListRequest {
+  string teamId = 1;
+}
+message GetProjectListResponse {
+  repeated Project projects = 1;
+}
+
+message GetProjectInfoRequest {
+  string id = 1; // project id
+}
+message GetProjectInfoResponse {
+  Project project = 1;
+}
+
+message UpdateProjectInfoRequest {
+  Project project = 1;
+}
+
+message UpdateProjectInfoResponse {
+  Project project = 1;
+}

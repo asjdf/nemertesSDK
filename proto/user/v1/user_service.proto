@@ -1,0 +1,33 @@
+syntax = "proto3";
+package user.v1;
+
+import "google/api/annotations.proto";
+import "user/v1/user.proto";
+
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/user/v1;userV1";
+
+service UserService {
+  rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse) {
+    option (google.api.http) = {get: "/gapi/user/v1/info"};
+  }
+  rpc EditUserInfo(EditUserInfoRequest) returns (EditUserInfoResponse) {
+    option (google.api.http) = {
+      post: "/gapi/user/v1/edit"
+      body: "*"
+    };
+  }
+}
+
+message GetUserInfoRequest {
+  string id = 1; // user id, if empty, get current user info
+}
+message GetUserInfoResponse {
+  User info = 1;
+}
+
+message EditUserInfoRequest {
+  User info = 1; // user info, if user id is empty, edit current user info
+}
+message EditUserInfoResponse {
+  User info = 1;
+}

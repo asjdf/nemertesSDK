@@ -1,0 +1,51 @@
+syntax = "proto3";
+package auth.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/auth/v1;authV1";
+
+service AuthService {
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+    option (google.api.http) = {
+      post: "/gapi/auth/v1/refreshToken"
+      body: "*"
+    };
+  }
+
+  rpc OAuthRedirect(OAuthRedirectRequest) returns (OAuthRedirectResponse) {
+    option (google.api.http) = {get: "/gapi/auth/v1/oauth/redirect"};
+  }
+
+  rpc OAuthCallback(OAuthCallbackRequest) returns (OAuthCallbackResponse) {
+    option (google.api.http) = {
+      post: "/gapi/auth/v1/oauth/callback",
+      body: "*"
+    };
+  }
+}
+
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+message RefreshTokenResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message OAuthRedirectRequest {
+  string platform = 1;
+  string from = 2;
+}
+message OAuthRedirectResponse {
+  string url = 1;
+}
+
+message OAuthCallbackRequest {
+  string code = 1;
+  string state = 2;
+}
+message OAuthCallbackResponse {
+  string access_token = 1;
+  string refresh_token = 3;
+}
