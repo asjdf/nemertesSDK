@@ -45,12 +45,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "org.ownerId",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -306,9 +300,6 @@
           "type": "string"
         },
         "name": {
-          "type": "string"
-        },
-        "ownerId": {
           "type": "string"
         }
       }
