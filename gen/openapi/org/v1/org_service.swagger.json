@@ -112,6 +112,12 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "team.orgId",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -174,6 +180,12 @@
           },
           {
             "name": "team.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "team.orgId",
             "in": "query",
             "required": false,
             "type": "string"
@@ -311,6 +323,9 @@
           "type": "string"
         },
         "name": {
+          "type": "string"
+        },
+        "orgId": {
           "type": "string"
         }
       }

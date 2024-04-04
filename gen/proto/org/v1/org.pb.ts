@@ -18,6 +18,7 @@ export type OrgMember = {
 export type Team = {
   id?: string
   name?: string
+  orgId?: string
 }
 
 export type TeamMember = {
