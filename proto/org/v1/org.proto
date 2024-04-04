@@ -9,13 +9,27 @@ message Org {
   string ownerId = 3;
 }
 
+message OrgMember {
+  string id = 1;
+  string orgId = 2;
+  string userId = 3;
+  string role = 4;
+}
+
 message Team {
   string id = 1;
   string name = 2;
 }
 
-message Project {
+message TeamMember {
   string id = 1;
-  string orgId = 2;
-  string name = 3;
+  string teamId = 2;
+  string userId = 3;
+  string role = 4;
+}
+
+message TeamProject {
+  string id = 1;
+  string teamId = 2;
+  string projectId = 3;
 }

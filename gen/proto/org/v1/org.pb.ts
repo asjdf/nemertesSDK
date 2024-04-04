@@ -9,13 +9,27 @@ export type Org = {
   ownerId?: string
 }
 
+export type OrgMember = {
+  id?: string
+  orgId?: string
+  userId?: string
+  role?: string
+}
+
 export type Team = {
   id?: string
   name?: string
 }
 
-export type Project = {
+export type TeamMember = {
   id?: string
-  orgId?: string
-  name?: string
+  teamId?: string
+  userId?: string
+  role?: string
+}
+
+export type TeamProject = {
+  id?: string
+  teamId?: string
+  projectId?: string
 }

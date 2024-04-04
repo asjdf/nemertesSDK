@@ -32,23 +32,6 @@ service TeamService {
     // EditTeamInfo edits the team info.
     option (google.api.http) = {put: "/gapi/team/v1/info"};
   }
-
-  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {
-    // CreateProject creates a project.
-    option (google.api.http) = {post: "/gapi/team/v1/project/create"};
-  }
-  rpc GetProjectList(GetProjectListRequest) returns (GetProjectListResponse) {
-    // GetProjectList returns a list of projects that the user is a member of.
-    option (google.api.http) = {get: "/gapi/team/v1/project/list"};
-  }
-  rpc GetProjectInfo(GetProjectInfoRequest) returns (GetProjectInfoResponse) {
-    // GetProjectInfo returns the project info.
-    option (google.api.http) = {get: "/gapi/team/v1/project/info"};
-  }
-  rpc UpdateProjectInfo(UpdateProjectInfoRequest) returns (UpdateProjectInfoResponse) {
-    // EditProjectInfo edits the project info.
-    option (google.api.http) = {put: "/gapi/team/v1/project/info"};
-  }
 }
 
 message CreateOrgRequest {
@@ -91,34 +74,4 @@ message UpdateTeamInfoRequest {
 }
 message UpdateTeamInfoResponse {
   Team team = 1;
-}
-
-message CreateProjectRequest {
-  Project project = 1;
-}
-
-message CreateProjectResponse {
-  Project project = 1;
-}
-
-message GetProjectListRequest {
-  string teamId = 1;
-}
-message GetProjectListResponse {
-  repeated Project projects = 1;
-}
-
-message GetProjectInfoRequest {
-  string id = 1; // project id
-}
-message GetProjectInfoResponse {
-  Project project = 1;
-}
-
-message UpdateProjectInfoRequest {
-  Project project = 1;
-}
-
-message UpdateProjectInfoResponse {
-  Project project = 1;
 }

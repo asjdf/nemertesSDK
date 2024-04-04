@@ -1,0 +1,10 @@
+syntax = "proto3";
+package project.v1;
+
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/project/v1;projectV1";
+
+message Project {
+  string id = 1;
+  string orgId = 2;
+  string name = 3;
+}

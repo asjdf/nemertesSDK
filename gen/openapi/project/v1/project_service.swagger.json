@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "org/v1/org_service.proto",
+    "title": "project/v1/project_service.proto",
     "version": "version not set"
   },
   "tags": [
@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/gapi/org/v1/create": {
+    "/gapi/team/v1/project/create": {
       "post": {
-        "operationId": "TeamService_CreateOrg",
+        "operationId": "TeamService_CreateProject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateOrgResponse"
+              "$ref": "#/definitions/v1CreateProjectResponse"
             }
           },
           "default": {
@@ -35,19 +35,25 @@
         },
         "parameters": [
           {
-            "name": "org.id",
+            "name": "project.id",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "org.name",
+            "name": "project.orgId",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "org.ownerId",
+            "name": "project.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "teamId",
             "in": "query",
             "required": false,
             "type": "string"
@@ -58,81 +64,14 @@
         ]
       }
     },
-    "/gapi/org/v1/list": {
+    "/gapi/team/v1/project/info": {
       "get": {
-        "operationId": "TeamService_GetOrgList",
+        "operationId": "TeamService_GetProjectInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetOrgListResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "userId",
-            "description": "if userId is empty, it will return all orgs",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "TeamService"
-        ]
-      }
-    },
-    "/gapi/team/v1/create": {
-      "post": {
-        "operationId": "TeamService_CreateTeam",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateTeamResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "team.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "team.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "TeamService"
-        ]
-      }
-    },
-    "/gapi/team/v1/info": {
-      "get": {
-        "operationId": "TeamService_GetTeamInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetTeamInfoResponse"
+              "$ref": "#/definitions/v1GetProjectInfoResponse"
             }
           },
           "default": {
@@ -145,7 +84,7 @@
         "parameters": [
           {
             "name": "id",
-            "description": "team id",
+            "description": "project id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -156,12 +95,12 @@
         ]
       },
       "put": {
-        "operationId": "TeamService_UpdateTeamInfo",
+        "operationId": "TeamService_UpdateProjectInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UpdateTeamInfoResponse"
+              "$ref": "#/definitions/v1UpdateProjectInfoResponse"
             }
           },
           "default": {
@@ -173,13 +112,19 @@
         },
         "parameters": [
           {
-            "name": "team.id",
+            "name": "project.id",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "team.name",
+            "name": "project.orgId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "project.name",
             "in": "query",
             "required": false,
             "type": "string"
@@ -190,14 +135,14 @@
         ]
       }
     },
-    "/gapi/team/v1/list": {
+    "/gapi/team/v1/project/list": {
       "get": {
-        "operationId": "TeamService_GetTeamList",
+        "operationId": "TeamService_GetProjectList",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetTeamListResponse"
+              "$ref": "#/definitions/v1GetProjectListResponse"
             }
           },
           "default": {
@@ -209,8 +154,7 @@
         },
         "parameters": [
           {
-            "name": "userId",
-            "description": "if userId is empty, it will return all teams",
+            "name": "teamId",
             "in": "query",
             "required": false,
             "type": "string"
@@ -251,72 +195,41 @@
         }
       }
     },
-    "v1CreateOrgResponse": {
+    "v1CreateProjectResponse": {
       "type": "object",
       "properties": {
-        "org": {
-          "$ref": "#/definitions/v1Org"
+        "project": {
+          "$ref": "#/definitions/v1Project"
         }
       }
     },
-    "v1CreateTeamResponse": {
+    "v1GetProjectInfoResponse": {
       "type": "object",
       "properties": {
-        "team": {
-          "$ref": "#/definitions/v1Team"
+        "project": {
+          "$ref": "#/definitions/v1Project"
         }
       }
     },
-    "v1GetOrgListResponse": {
+    "v1GetProjectListResponse": {
       "type": "object",
       "properties": {
-        "orgs": {
+        "projects": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1Org"
+            "$ref": "#/definitions/v1Project"
           }
         }
       }
     },
-    "v1GetTeamInfoResponse": {
-      "type": "object",
-      "properties": {
-        "team": {
-          "$ref": "#/definitions/v1Team"
-        }
-      }
-    },
-    "v1GetTeamListResponse": {
-      "type": "object",
-      "properties": {
-        "teams": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Team"
-          }
-        }
-      }
-    },
-    "v1Org": {
+    "v1Project": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "name": {
-          "type": "string"
-        },
-        "ownerId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1Team": {
-      "type": "object",
-      "properties": {
-        "id": {
+        "orgId": {
           "type": "string"
         },
         "name": {
@@ -324,11 +237,11 @@
         }
       }
     },
-    "v1UpdateTeamInfoResponse": {
+    "v1UpdateProjectInfoResponse": {
       "type": "object",
       "properties": {
-        "team": {
-          "$ref": "#/definitions/v1Team"
+        "project": {
+          "$ref": "#/definitions/v1Project"
         }
       }
     }
