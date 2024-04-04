@@ -26,11 +26,11 @@ service AuthService {
 }
 
 message RefreshTokenRequest {
-  string refresh_token = 1;
+  string refreshToken = 1;
 }
 message RefreshTokenResponse {
-  string access_token = 1;
-  string refresh_token = 2;
+  string accessToken = 1;
+  string refreshToken = 2;
 }
 
 message OAuthRedirectRequest {
@@ -46,6 +46,6 @@ message OAuthCallbackRequest {
   string state = 2;
 }
 message OAuthCallbackResponse {
-  string access_token = 1;
-  string refresh_token = 3;
+  string accessToken = 1;
+  string refreshToken = 3;
 }

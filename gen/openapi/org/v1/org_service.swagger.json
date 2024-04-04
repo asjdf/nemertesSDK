@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "team/v1/team_service.proto",
+    "title": "org/v1/org_service.proto",
     "version": "version not set"
   },
   "tags": [
@@ -16,6 +16,79 @@
     "application/json"
   ],
   "paths": {
+    "/gapi/org/v1/create": {
+      "post": {
+        "operationId": "TeamService_CreateOrg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrgResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "org.id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "org.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "org.ownerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/gapi/org/v1/list": {
+      "get": {
+        "operationId": "TeamService_GetOrgList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetOrgListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "description": "if userId is empty, it will return all orgs",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
     "/gapi/team/v1/create": {
       "post": {
         "operationId": "TeamService_CreateTeam",
@@ -173,7 +246,7 @@
             "type": "string"
           },
           {
-            "name": "project.teamId",
+            "name": "project.orgId",
             "in": "query",
             "required": false,
             "type": "string"
@@ -244,7 +317,7 @@
             "type": "string"
           },
           {
-            "name": "project.teamId",
+            "name": "project.orgId",
             "in": "query",
             "required": false,
             "type": "string"
@@ -321,6 +394,14 @@
         }
       }
     },
+    "v1CreateOrgResponse": {
+      "type": "object",
+      "properties": {
+        "org": {
+          "$ref": "#/definitions/v1Org"
+        }
+      }
+    },
     "v1CreateProjectResponse": {
       "type": "object",
       "properties": {
@@ -334,6 +415,18 @@
       "properties": {
         "team": {
           "$ref": "#/definitions/v1Team"
+        }
+      }
+    },
+    "v1GetOrgListResponse": {
+      "type": "object",
+      "properties": {
+        "orgs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Org"
+          }
         }
       }
     },
@@ -377,13 +470,27 @@
         }
       }
     },
+    "v1Org": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    },
     "v1Project": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "teamId": {
+        "orgId": {
           "type": "string"
         },
         "name": {

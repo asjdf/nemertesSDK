@@ -6,12 +6,12 @@
 
 import * as fm from "../../fetch.pb"
 export type RefreshTokenRequest = {
-  refresh_token?: string
+  refreshToken?: string
 }
 
 export type RefreshTokenResponse = {
-  access_token?: string
-  refresh_token?: string
+  accessToken?: string
+  refreshToken?: string
 }
 
 export type OAuthRedirectRequest = {
@@ -29,8 +29,8 @@ export type OAuthCallbackRequest = {
 }
 
 export type OAuthCallbackResponse = {
-  access_token?: string
-  refresh_token?: string
+  accessToken?: string
+  refreshToken?: string
 }
 
 export class AuthService {

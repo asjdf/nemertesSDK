@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "team/v1/team.proto",
+    "title": "org/v1/org.proto",
     "version": "version not set"
   },
   "consumes": [

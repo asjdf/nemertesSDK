@@ -1,12 +1,21 @@
 syntax = "proto3";
-package team.v1;
+package org.v1;
 
 import "google/api/annotations.proto";
-import "team/v1/team.proto";
+import "org/v1/org.proto";
 
-option go_package = "github.com/asjdf/nemertesSDK/gen/proto/team/v1;teamV1";
+option go_package = "github.com/asjdf/nemertesSDK/gen/proto/org/v1;orgV1";
 
 service TeamService {
+  rpc CreateOrg(CreateOrgRequest) returns (CreateOrgResponse) {
+    // CreateOrg creates an org.
+    option (google.api.http) = {post: "/gapi/org/v1/create"};
+  }
+  rpc GetOrgList(GetOrgListRequest) returns (GetOrgListResponse) {
+    // GetOrgList returns a list of orgs that the user is a member of.
+    option (google.api.http) = {get: "/gapi/org/v1/list"};
+  }
+
   rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse) {
     // CreateTeam creates a team.
     option (google.api.http) = {post: "/gapi/team/v1/create"};
@@ -40,6 +49,20 @@ service TeamService {
     // EditProjectInfo edits the project info.
     option (google.api.http) = {put: "/gapi/team/v1/project/info"};
   }
+}
+
+message CreateOrgRequest {
+  Org org = 1;
+}
+message CreateOrgResponse {
+  Org org = 1;
+}
+
+message GetOrgListRequest {
+  string userId = 1; // if userId is empty, it will return all orgs
+}
+message GetOrgListResponse {
+  repeated Org orgs = 1;
 }
 
 message CreateTeamRequest {

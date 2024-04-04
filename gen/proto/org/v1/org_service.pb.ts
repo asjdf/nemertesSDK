@@ -5,13 +5,29 @@
 */
 
 import * as fm from "../../fetch.pb"
-import * as TeamV1Team from "./team.pb"
+import * as OrgV1Org from "./org.pb"
+export type CreateOrgRequest = {
+  org?: OrgV1Org.Org
+}
+
+export type CreateOrgResponse = {
+  org?: OrgV1Org.Org
+}
+
+export type GetOrgListRequest = {
+  userId?: string
+}
+
+export type GetOrgListResponse = {
+  orgs?: OrgV1Org.Org[]
+}
+
 export type CreateTeamRequest = {
-  team?: TeamV1Team.Team
+  team?: OrgV1Org.Team
 }
 
 export type CreateTeamResponse = {
-  team?: TeamV1Team.Team
+  team?: OrgV1Org.Team
 }
 
 export type GetTeamListRequest = {
@@ -19,7 +35,7 @@ export type GetTeamListRequest = {
 }
 
 export type GetTeamListResponse = {
-  teams?: TeamV1Team.Team[]
+  teams?: OrgV1Org.Team[]
 }
 
 export type GetTeamInfoRequest = {
@@ -27,23 +43,23 @@ export type GetTeamInfoRequest = {
 }
 
 export type GetTeamInfoResponse = {
-  team?: TeamV1Team.Team
+  team?: OrgV1Org.Team
 }
 
 export type UpdateTeamInfoRequest = {
-  team?: TeamV1Team.Team
+  team?: OrgV1Org.Team
 }
 
 export type UpdateTeamInfoResponse = {
-  team?: TeamV1Team.Team
+  team?: OrgV1Org.Team
 }
 
 export type CreateProjectRequest = {
-  project?: TeamV1Team.Project
+  project?: OrgV1Org.Project
 }
 
 export type CreateProjectResponse = {
-  project?: TeamV1Team.Project
+  project?: OrgV1Org.Project
 }
 
 export type GetProjectListRequest = {
@@ -51,7 +67,7 @@ export type GetProjectListRequest = {
 }
 
 export type GetProjectListResponse = {
-  projects?: TeamV1Team.Project[]
+  projects?: OrgV1Org.Project[]
 }
 
 export type GetProjectInfoRequest = {
@@ -59,18 +75,24 @@ export type GetProjectInfoRequest = {
 }
 
 export type GetProjectInfoResponse = {
-  project?: TeamV1Team.Project
+  project?: OrgV1Org.Project
 }
 
 export type UpdateProjectInfoRequest = {
-  project?: TeamV1Team.Project
+  project?: OrgV1Org.Project
 }
 
 export type UpdateProjectInfoResponse = {
-  project?: TeamV1Team.Project
+  project?: OrgV1Org.Project
 }
 
 export class TeamService {
+  static CreateOrg(req: CreateOrgRequest, initReq?: fm.InitReq): Promise<CreateOrgResponse> {
+    return fm.fetchReq<CreateOrgRequest, CreateOrgResponse>(`/gapi/org/v1/create`, {...initReq, method: "POST"})
+  }
+  static GetOrgList(req: GetOrgListRequest, initReq?: fm.InitReq): Promise<GetOrgListResponse> {
+    return fm.fetchReq<GetOrgListRequest, GetOrgListResponse>(`/gapi/org/v1/list?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
+  }
   static CreateTeam(req: CreateTeamRequest, initReq?: fm.InitReq): Promise<CreateTeamResponse> {
     return fm.fetchReq<CreateTeamRequest, CreateTeamResponse>(`/gapi/team/v1/create`, {...initReq, method: "POST"})
   }
