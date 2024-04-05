@@ -35,16 +35,12 @@
         },
         "parameters": [
           {
-            "name": "org.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "org.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrgRequest"
+            }
           }
         ],
         "tags": [
@@ -295,6 +291,14 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "v1CreateOrgRequest": {
+      "type": "object",
+      "properties": {
+        "org": {
+          "$ref": "#/definitions/v1Org"
         }
       }
     },
