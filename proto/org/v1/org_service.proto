@@ -10,7 +10,10 @@ option go_package = "github.com/asjdf/nemertesSDK/gen/proto/org/v1;orgV1";
 service OrgService {
   rpc CreateOrg(CreateOrgRequest) returns (CreateOrgResponse) {
     // CreateOrg creates an org.
-    option (google.api.http) = {post: "/gapi/org/v1/create"};
+    option (google.api.http) = {
+      post: "/gapi/org/v1/create"
+      body: "*"
+    };
   }
   rpc GetOrgList(GetOrgListRequest) returns (GetOrgListResponse) {
     // GetOrgList returns a list of orgs that the user is a member of.
