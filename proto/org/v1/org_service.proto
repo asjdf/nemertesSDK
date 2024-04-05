@@ -3,6 +3,7 @@ package org.v1;
 
 import "google/api/annotations.proto";
 import "org/v1/org.proto";
+import "user/v1/user.proto";
 
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/org/v1;orgV1";
 
@@ -56,11 +57,15 @@ message GetOrgListResponse {
   repeated Org orgs = 1;
 }
 
+message OrgMemberDetail {
+  OrgMember member = 1;
+  user.v1.User user = 2;
+}
 message GetOrgMembersRequest {
   string orgId = 1; // if orgId is empty, it will return current org members from auth info
 }
 message GetOrgMembersResponse {
-  repeated OrgMember member = 1;
+  repeated OrgMemberDetail member = 1;
 }
 
 message CreateTeamRequest {

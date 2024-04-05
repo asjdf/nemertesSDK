@@ -5,6 +5,7 @@
 */
 
 import * as fm from "../../fetch.pb"
+import * as UserV1User from "../../user/v1/user.pb"
 import * as OrgV1Org from "./org.pb"
 export type CreateOrgRequest = {
   org?: OrgV1Org.Org
@@ -22,12 +23,17 @@ export type GetOrgListResponse = {
   orgs?: OrgV1Org.Org[]
 }
 
+export type OrgMemberDetail = {
+  member?: OrgV1Org.OrgMember
+  user?: UserV1User.User
+}
+
 export type GetOrgMembersRequest = {
   orgId?: string
 }
 
 export type GetOrgMembersResponse = {
-  member?: OrgV1Org.OrgMember[]
+  member?: OrgMemberDetail[]
 }
 
 export type CreateTeamRequest = {

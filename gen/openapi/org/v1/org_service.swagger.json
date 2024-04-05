@@ -353,7 +353,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1OrgMember"
+            "$ref": "#/definitions/v1OrgMemberDetail"
           }
         }
       }
@@ -418,6 +418,17 @@
         }
       }
     },
+    "v1OrgMemberDetail": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/v1OrgMember"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
     "v1Team": {
       "type": "object",
       "properties": {
@@ -454,6 +465,17 @@
       "properties": {
         "team": {
           "$ref": "#/definitions/v1Team"
+        }
+      }
+    },
+    "v1User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
         }
       }
     }
