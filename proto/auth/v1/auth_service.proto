@@ -6,6 +6,13 @@ import "google/api/annotations.proto";
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/auth/v1;authV1";
 
 service AuthService {
+  rpc SwitchOrg(SwitchOrgRequest) returns (SwitchOrgResponse) {
+    option (google.api.http) = {
+      post: "/gapi/auth/v1/switchOrg"
+      body: "*"
+    };
+  }
+
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
     option (google.api.http) = {
       post: "/gapi/auth/v1/refreshToken"
@@ -23,6 +30,14 @@ service AuthService {
       body: "*"
     };
   }
+}
+
+message SwitchOrgRequest {
+  string orgId = 1;
+}
+message SwitchOrgResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
 }
 
 message RefreshTokenRequest {

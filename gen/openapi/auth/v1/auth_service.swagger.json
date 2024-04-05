@@ -115,6 +115,38 @@
           "AuthService"
         ]
       }
+    },
+    "/gapi/auth/v1/switchOrg": {
+      "post": {
+        "operationId": "AuthService_SwitchOrg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SwitchOrgResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SwitchOrgRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -185,6 +217,25 @@
       }
     },
     "v1RefreshTokenResponse": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SwitchOrgRequest": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SwitchOrgResponse": {
       "type": "object",
       "properties": {
         "accessToken": {

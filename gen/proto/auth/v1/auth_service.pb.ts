@@ -5,6 +5,15 @@
 */
 
 import * as fm from "../../fetch.pb"
+export type SwitchOrgRequest = {
+  orgId?: string
+}
+
+export type SwitchOrgResponse = {
+  accessToken?: string
+  refreshToken?: string
+}
+
 export type RefreshTokenRequest = {
   refreshToken?: string
 }
@@ -34,6 +43,9 @@ export type OAuthCallbackResponse = {
 }
 
 export class AuthService {
+  static SwitchOrg(req: SwitchOrgRequest, initReq?: fm.InitReq): Promise<SwitchOrgResponse> {
+    return fm.fetchReq<SwitchOrgRequest, SwitchOrgResponse>(`/gapi/auth/v1/switchOrg`, {...initReq, method: "POST", body: JSON.stringify(req, fm.replacer)})
+  }
   static RefreshToken(req: RefreshTokenRequest, initReq?: fm.InitReq): Promise<RefreshTokenResponse> {
     return fm.fetchReq<RefreshTokenRequest, RefreshTokenResponse>(`/gapi/auth/v1/refreshToken`, {...initReq, method: "POST", body: JSON.stringify(req, fm.replacer)})
   }

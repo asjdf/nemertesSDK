@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	AuthService_SwitchOrg_FullMethodName     = "/auth.v1.AuthService/SwitchOrg"
 	AuthService_RefreshToken_FullMethodName  = "/auth.v1.AuthService/RefreshToken"
 	AuthService_OAuthRedirect_FullMethodName = "/auth.v1.AuthService/OAuthRedirect"
 	AuthService_OAuthCallback_FullMethodName = "/auth.v1.AuthService/OAuthCallback"
@@ -28,6 +29,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
+	SwitchOrg(ctx context.Context, in *SwitchOrgRequest, opts ...grpc.CallOption) (*SwitchOrgResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	OAuthRedirect(ctx context.Context, in *OAuthRedirectRequest, opts ...grpc.CallOption) (*OAuthRedirectResponse, error)
 	OAuthCallback(ctx context.Context, in *OAuthCallbackRequest, opts ...grpc.CallOption) (*OAuthCallbackResponse, error)
@@ -39,6 +41,15 @@ type authServiceClient struct {
 
 func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
+}
+
+func (c *authServiceClient) SwitchOrg(ctx context.Context, in *SwitchOrgRequest, opts ...grpc.CallOption) (*SwitchOrgResponse, error) {
+	out := new(SwitchOrgResponse)
+	err := c.cc.Invoke(ctx, AuthService_SwitchOrg_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
@@ -72,6 +83,7 @@ func (c *authServiceClient) OAuthCallback(ctx context.Context, in *OAuthCallback
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
+	SwitchOrg(context.Context, *SwitchOrgRequest) (*SwitchOrgResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	OAuthRedirect(context.Context, *OAuthRedirectRequest) (*OAuthRedirectResponse, error)
 	OAuthCallback(context.Context, *OAuthCallbackRequest) (*OAuthCallbackResponse, error)
@@ -82,6 +94,9 @@ type AuthServiceServer interface {
 type UnimplementedAuthServiceServer struct {
 }
 
+func (UnimplementedAuthServiceServer) SwitchOrg(context.Context, *SwitchOrgRequest) (*SwitchOrgResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SwitchOrg not implemented")
+}
 func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
@@ -102,6 +117,24 @@ type UnsafeAuthServiceServer interface {
 
 func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 	s.RegisterService(&AuthService_ServiceDesc, srv)
+}
+
+func _AuthService_SwitchOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SwitchOrgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).SwitchOrg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_SwitchOrg_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).SwitchOrg(ctx, req.(*SwitchOrgRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -165,6 +198,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "auth.v1.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SwitchOrg",
+			Handler:    _AuthService_SwitchOrg_Handler,
+		},
 		{
 			MethodName: "RefreshToken",
 			Handler:    _AuthService_RefreshToken_Handler,
