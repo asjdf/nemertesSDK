@@ -96,6 +96,10 @@ message UpdateTeamInfoResponse {
   Team team = 1;
 }
 
+message TeamMemberDetail {
+  TeamMember member = 1;
+  user.v1.User user = 2;
+}
 message GetTeamMembersRequest {
   string teamId = 1;
 }

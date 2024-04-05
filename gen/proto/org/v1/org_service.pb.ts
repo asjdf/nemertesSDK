@@ -68,6 +68,11 @@ export type UpdateTeamInfoResponse = {
   team?: OrgV1Org.Team
 }
 
+export type TeamMemberDetail = {
+  member?: OrgV1Org.TeamMember
+  user?: UserV1User.User
+}
+
 export type GetTeamMembersRequest = {
   teamId?: string
 }
