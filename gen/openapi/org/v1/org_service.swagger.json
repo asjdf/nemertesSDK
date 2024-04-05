@@ -133,22 +133,12 @@
         },
         "parameters": [
           {
-            "name": "team.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "team.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "team.orgId",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateTeamRequest"
+            }
           }
         ],
         "tags": [
@@ -204,22 +194,12 @@
         },
         "parameters": [
           {
-            "name": "team.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "team.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "team.orgId",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateTeamInfoRequest"
+            }
           }
         ],
         "tags": [
@@ -323,6 +303,14 @@
       "properties": {
         "org": {
           "$ref": "#/definitions/v1Org"
+        }
+      }
+    },
+    "v1CreateTeamRequest": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/v1Team"
         }
       }
     },
@@ -468,6 +456,14 @@
         },
         "user": {
           "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1UpdateTeamInfoRequest": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/v1Team"
         }
       }
     },

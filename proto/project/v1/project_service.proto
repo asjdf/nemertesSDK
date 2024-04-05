@@ -9,7 +9,10 @@ option go_package = "github.com/asjdf/nemertesSDK/gen/proto/project/v1;projectV1
 service ProjectService {
   rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {
     // CreateProject creates a project.
-    option (google.api.http) = {post: "/gapi/team/v1/project/create"};
+    option (google.api.http) = {
+      post: "/gapi/team/v1/project/create"
+      body: "*"
+    };
   }
   rpc GetProjectList(GetProjectListRequest) returns (GetProjectListResponse) {
     // GetProjectList returns a list of projects that the user is a member of.
@@ -21,7 +24,10 @@ service ProjectService {
   }
   rpc UpdateProjectInfo(UpdateProjectInfoRequest) returns (UpdateProjectInfoResponse) {
     // EditProjectInfo edits the project info.
-    option (google.api.http) = {put: "/gapi/team/v1/project/info"};
+    option (google.api.http) = {
+      put: "/gapi/team/v1/project/info"
+      body: "*"
+    };
   }
 }
 

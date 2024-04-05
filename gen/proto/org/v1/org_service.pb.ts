@@ -92,7 +92,7 @@ export class OrgService {
     return fm.fetchReq<GetOrgMembersRequest, GetOrgMembersResponse>(`/gapi/org/v1/members?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
   }
   static CreateTeam(req: CreateTeamRequest, initReq?: fm.InitReq): Promise<CreateTeamResponse> {
-    return fm.fetchReq<CreateTeamRequest, CreateTeamResponse>(`/gapi/team/v1/create`, {...initReq, method: "POST"})
+    return fm.fetchReq<CreateTeamRequest, CreateTeamResponse>(`/gapi/team/v1/create`, {...initReq, method: "POST", body: JSON.stringify(req, fm.replacer)})
   }
   static GetTeamList(req: GetTeamListRequest, initReq?: fm.InitReq): Promise<GetTeamListResponse> {
     return fm.fetchReq<GetTeamListRequest, GetTeamListResponse>(`/gapi/team/v1/list?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
@@ -101,7 +101,7 @@ export class OrgService {
     return fm.fetchReq<GetTeamInfoRequest, GetTeamInfoResponse>(`/gapi/team/v1/info?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
   }
   static UpdateTeamInfo(req: UpdateTeamInfoRequest, initReq?: fm.InitReq): Promise<UpdateTeamInfoResponse> {
-    return fm.fetchReq<UpdateTeamInfoRequest, UpdateTeamInfoResponse>(`/gapi/team/v1/info`, {...initReq, method: "PUT"})
+    return fm.fetchReq<UpdateTeamInfoRequest, UpdateTeamInfoResponse>(`/gapi/team/v1/info`, {...initReq, method: "PUT", body: JSON.stringify(req, fm.replacer)})
   }
   static GetTeamMembers(req: GetTeamMembersRequest, initReq?: fm.InitReq): Promise<GetTeamMembersResponse> {
     return fm.fetchReq<GetTeamMembersRequest, GetTeamMembersResponse>(`/gapi/team/v1/members?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})

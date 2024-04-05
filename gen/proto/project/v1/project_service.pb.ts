@@ -41,7 +41,7 @@ export type UpdateProjectInfoResponse = {
 
 export class ProjectService {
   static CreateProject(req: CreateProjectRequest, initReq?: fm.InitReq): Promise<CreateProjectResponse> {
-    return fm.fetchReq<CreateProjectRequest, CreateProjectResponse>(`/gapi/team/v1/project/create`, {...initReq, method: "POST"})
+    return fm.fetchReq<CreateProjectRequest, CreateProjectResponse>(`/gapi/team/v1/project/create`, {...initReq, method: "POST", body: JSON.stringify(req, fm.replacer)})
   }
   static GetProjectList(req: GetProjectListRequest, initReq?: fm.InitReq): Promise<GetProjectListResponse> {
     return fm.fetchReq<GetProjectListRequest, GetProjectListResponse>(`/gapi/team/v1/project/list?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
@@ -50,6 +50,6 @@ export class ProjectService {
     return fm.fetchReq<GetProjectInfoRequest, GetProjectInfoResponse>(`/gapi/team/v1/project/info?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
   }
   static UpdateProjectInfo(req: UpdateProjectInfoRequest, initReq?: fm.InitReq): Promise<UpdateProjectInfoResponse> {
-    return fm.fetchReq<UpdateProjectInfoRequest, UpdateProjectInfoResponse>(`/gapi/team/v1/project/info`, {...initReq, method: "PUT"})
+    return fm.fetchReq<UpdateProjectInfoRequest, UpdateProjectInfoResponse>(`/gapi/team/v1/project/info`, {...initReq, method: "PUT", body: JSON.stringify(req, fm.replacer)})
   }
 }

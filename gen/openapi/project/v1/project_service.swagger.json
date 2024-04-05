@@ -35,28 +35,12 @@
         },
         "parameters": [
           {
-            "name": "project.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "project.orgId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "project.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "teamId",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateProjectRequest"
+            }
           }
         ],
         "tags": [
@@ -112,22 +96,12 @@
         },
         "parameters": [
           {
-            "name": "project.id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "project.orgId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "project.name",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateProjectInfoRequest"
+            }
           }
         ],
         "tags": [
@@ -195,6 +169,17 @@
         }
       }
     },
+    "v1CreateProjectRequest": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/v1Project"
+        },
+        "teamId": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateProjectResponse": {
       "type": "object",
       "properties": {
@@ -234,6 +219,14 @@
         },
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "v1UpdateProjectInfoRequest": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/v1Project"
         }
       }
     },
