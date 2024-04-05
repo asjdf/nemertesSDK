@@ -104,5 +104,5 @@ message GetTeamMembersRequest {
   string teamId = 1;
 }
 message GetTeamMembersResponse {
-  repeated TeamMember member = 1;
+  repeated TeamMemberDetail member = 1;
 }

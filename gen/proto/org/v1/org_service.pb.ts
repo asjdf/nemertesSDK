@@ -78,7 +78,7 @@ export type GetTeamMembersRequest = {
 }
 
 export type GetTeamMembersResponse = {
-  member?: OrgV1Org.TeamMember[]
+  member?: TeamMemberDetail[]
 }
 
 export class TeamService {

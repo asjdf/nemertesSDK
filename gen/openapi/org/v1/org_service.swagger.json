@@ -385,7 +385,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1TeamMember"
+            "$ref": "#/definitions/v1TeamMemberDetail"
           }
         }
       }
@@ -457,6 +457,17 @@
         },
         "role": {
           "type": "string"
+        }
+      }
+    },
+    "v1TeamMemberDetail": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/v1TeamMember"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
         }
       }
     },
