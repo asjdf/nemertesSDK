@@ -83,6 +83,37 @@
         ]
       }
     },
+    "/gapi/org/v1/members": {
+      "get": {
+        "operationId": "TeamService_GetOrgMembers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetOrgMembersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "if orgId is empty, it will return current org members from auth info",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
     "/gapi/team/v1/create": {
       "post": {
         "operationId": "TeamService_CreateTeam",
@@ -226,6 +257,36 @@
           "TeamService"
         ]
       }
+    },
+    "/gapi/team/v1/members": {
+      "get": {
+        "operationId": "TeamService_GetTeamMembers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTeamMembersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -285,6 +346,18 @@
         }
       }
     },
+    "v1GetOrgMembersResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1OrgMember"
+          }
+        }
+      }
+    },
     "v1GetTeamInfoResponse": {
       "type": "object",
       "properties": {
@@ -305,6 +378,18 @@
         }
       }
     },
+    "v1GetTeamMembersResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TeamMember"
+          }
+        }
+      }
+    },
     "v1Org": {
       "type": "object",
       "properties": {
@@ -312,6 +397,23 @@
           "type": "string"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1OrgMember": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "role": {
           "type": "string"
         }
       }
@@ -326,6 +428,23 @@
           "type": "string"
         },
         "orgId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TeamMember": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "role": {
           "type": "string"
         }
       }

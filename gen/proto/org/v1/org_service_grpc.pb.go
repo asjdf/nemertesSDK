@@ -21,10 +21,12 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	TeamService_CreateOrg_FullMethodName      = "/org.v1.TeamService/CreateOrg"
 	TeamService_GetOrgList_FullMethodName     = "/org.v1.TeamService/GetOrgList"
+	TeamService_GetOrgMembers_FullMethodName  = "/org.v1.TeamService/GetOrgMembers"
 	TeamService_CreateTeam_FullMethodName     = "/org.v1.TeamService/CreateTeam"
 	TeamService_GetTeamList_FullMethodName    = "/org.v1.TeamService/GetTeamList"
 	TeamService_GetTeamInfo_FullMethodName    = "/org.v1.TeamService/GetTeamInfo"
 	TeamService_UpdateTeamInfo_FullMethodName = "/org.v1.TeamService/UpdateTeamInfo"
+	TeamService_GetTeamMembers_FullMethodName = "/org.v1.TeamService/GetTeamMembers"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -33,10 +35,12 @@ const (
 type TeamServiceClient interface {
 	CreateOrg(ctx context.Context, in *CreateOrgRequest, opts ...grpc.CallOption) (*CreateOrgResponse, error)
 	GetOrgList(ctx context.Context, in *GetOrgListRequest, opts ...grpc.CallOption) (*GetOrgListResponse, error)
+	GetOrgMembers(ctx context.Context, in *GetOrgMembersRequest, opts ...grpc.CallOption) (*GetOrgMembersResponse, error)
 	CreateTeam(ctx context.Context, in *CreateTeamRequest, opts ...grpc.CallOption) (*CreateTeamResponse, error)
 	GetTeamList(ctx context.Context, in *GetTeamListRequest, opts ...grpc.CallOption) (*GetTeamListResponse, error)
 	GetTeamInfo(ctx context.Context, in *GetTeamInfoRequest, opts ...grpc.CallOption) (*GetTeamInfoResponse, error)
 	UpdateTeamInfo(ctx context.Context, in *UpdateTeamInfoRequest, opts ...grpc.CallOption) (*UpdateTeamInfoResponse, error)
+	GetTeamMembers(ctx context.Context, in *GetTeamMembersRequest, opts ...grpc.CallOption) (*GetTeamMembersResponse, error)
 }
 
 type teamServiceClient struct {
@@ -59,6 +63,15 @@ func (c *teamServiceClient) CreateOrg(ctx context.Context, in *CreateOrgRequest,
 func (c *teamServiceClient) GetOrgList(ctx context.Context, in *GetOrgListRequest, opts ...grpc.CallOption) (*GetOrgListResponse, error) {
 	out := new(GetOrgListResponse)
 	err := c.cc.Invoke(ctx, TeamService_GetOrgList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) GetOrgMembers(ctx context.Context, in *GetOrgMembersRequest, opts ...grpc.CallOption) (*GetOrgMembersResponse, error) {
+	out := new(GetOrgMembersResponse)
+	err := c.cc.Invoke(ctx, TeamService_GetOrgMembers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,16 +114,27 @@ func (c *teamServiceClient) UpdateTeamInfo(ctx context.Context, in *UpdateTeamIn
 	return out, nil
 }
 
+func (c *teamServiceClient) GetTeamMembers(ctx context.Context, in *GetTeamMembersRequest, opts ...grpc.CallOption) (*GetTeamMembersResponse, error) {
+	out := new(GetTeamMembersResponse)
+	err := c.cc.Invoke(ctx, TeamService_GetTeamMembers_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility
 type TeamServiceServer interface {
 	CreateOrg(context.Context, *CreateOrgRequest) (*CreateOrgResponse, error)
 	GetOrgList(context.Context, *GetOrgListRequest) (*GetOrgListResponse, error)
+	GetOrgMembers(context.Context, *GetOrgMembersRequest) (*GetOrgMembersResponse, error)
 	CreateTeam(context.Context, *CreateTeamRequest) (*CreateTeamResponse, error)
 	GetTeamList(context.Context, *GetTeamListRequest) (*GetTeamListResponse, error)
 	GetTeamInfo(context.Context, *GetTeamInfoRequest) (*GetTeamInfoResponse, error)
 	UpdateTeamInfo(context.Context, *UpdateTeamInfoRequest) (*UpdateTeamInfoResponse, error)
+	GetTeamMembers(context.Context, *GetTeamMembersRequest) (*GetTeamMembersResponse, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -124,6 +148,9 @@ func (UnimplementedTeamServiceServer) CreateOrg(context.Context, *CreateOrgReque
 func (UnimplementedTeamServiceServer) GetOrgList(context.Context, *GetOrgListRequest) (*GetOrgListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrgList not implemented")
 }
+func (UnimplementedTeamServiceServer) GetOrgMembers(context.Context, *GetOrgMembersRequest) (*GetOrgMembersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrgMembers not implemented")
+}
 func (UnimplementedTeamServiceServer) CreateTeam(context.Context, *CreateTeamRequest) (*CreateTeamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTeam not implemented")
 }
@@ -135,6 +162,9 @@ func (UnimplementedTeamServiceServer) GetTeamInfo(context.Context, *GetTeamInfoR
 }
 func (UnimplementedTeamServiceServer) UpdateTeamInfo(context.Context, *UpdateTeamInfoRequest) (*UpdateTeamInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeamInfo not implemented")
+}
+func (UnimplementedTeamServiceServer) GetTeamMembers(context.Context, *GetTeamMembersRequest) (*GetTeamMembersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTeamMembers not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 
@@ -181,6 +211,24 @@ func _TeamService_GetOrgList_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeamServiceServer).GetOrgList(ctx, req.(*GetOrgListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_GetOrgMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrgMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).GetOrgMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_GetOrgMembers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).GetOrgMembers(ctx, req.(*GetOrgMembersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,6 +305,24 @@ func _TeamService_UpdateTeamInfo_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_GetTeamMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTeamMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).GetTeamMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_GetTeamMembers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).GetTeamMembers(ctx, req.(*GetTeamMembersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -273,6 +339,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TeamService_GetOrgList_Handler,
 		},
 		{
+			MethodName: "GetOrgMembers",
+			Handler:    _TeamService_GetOrgMembers_Handler,
+		},
+		{
 			MethodName: "CreateTeam",
 			Handler:    _TeamService_CreateTeam_Handler,
 		},
@@ -287,6 +357,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTeamInfo",
 			Handler:    _TeamService_UpdateTeamInfo_Handler,
+		},
+		{
+			MethodName: "GetTeamMembers",
+			Handler:    _TeamService_GetTeamMembers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

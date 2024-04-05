@@ -15,6 +15,10 @@ service TeamService {
     // GetOrgList returns a list of orgs that the user is a member of.
     option (google.api.http) = {get: "/gapi/org/v1/list"};
   }
+  rpc GetOrgMembers(GetOrgMembersRequest) returns (GetOrgMembersResponse) {
+    // GetOrgMembers returns a list of members of the org.
+    option (google.api.http) = {get: "/gapi/org/v1/members"};
+  }
 
   rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse) {
     // CreateTeam creates a team.
@@ -32,6 +36,10 @@ service TeamService {
     // EditTeamInfo edits the team info.
     option (google.api.http) = {put: "/gapi/team/v1/info"};
   }
+  rpc GetTeamMembers(GetTeamMembersRequest) returns (GetTeamMembersResponse) {
+    // GetTeamMembers returns a list of members of the team.
+    option (google.api.http) = {get: "/gapi/team/v1/members"};
+  }
 }
 
 message CreateOrgRequest {
@@ -46,6 +54,13 @@ message GetOrgListRequest {
 }
 message GetOrgListResponse {
   repeated Org orgs = 1;
+}
+
+message GetOrgMembersRequest {
+  string orgId = 1; // if orgId is empty, it will return current org members from auth info
+}
+message GetOrgMembersResponse {
+  repeated OrgMember member = 1;
 }
 
 message CreateTeamRequest {
@@ -74,4 +89,11 @@ message UpdateTeamInfoRequest {
 }
 message UpdateTeamInfoResponse {
   Team team = 1;
+}
+
+message GetTeamMembersRequest {
+  string teamId = 1;
+}
+message GetTeamMembersResponse {
+  repeated TeamMember member = 1;
 }

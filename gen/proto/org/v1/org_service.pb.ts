@@ -22,6 +22,14 @@ export type GetOrgListResponse = {
   orgs?: OrgV1Org.Org[]
 }
 
+export type GetOrgMembersRequest = {
+  orgId?: string
+}
+
+export type GetOrgMembersResponse = {
+  member?: OrgV1Org.OrgMember[]
+}
+
 export type CreateTeamRequest = {
   team?: OrgV1Org.Team
 }
@@ -54,12 +62,23 @@ export type UpdateTeamInfoResponse = {
   team?: OrgV1Org.Team
 }
 
+export type GetTeamMembersRequest = {
+  teamId?: string
+}
+
+export type GetTeamMembersResponse = {
+  member?: OrgV1Org.TeamMember[]
+}
+
 export class TeamService {
   static CreateOrg(req: CreateOrgRequest, initReq?: fm.InitReq): Promise<CreateOrgResponse> {
     return fm.fetchReq<CreateOrgRequest, CreateOrgResponse>(`/gapi/org/v1/create`, {...initReq, method: "POST"})
   }
   static GetOrgList(req: GetOrgListRequest, initReq?: fm.InitReq): Promise<GetOrgListResponse> {
     return fm.fetchReq<GetOrgListRequest, GetOrgListResponse>(`/gapi/org/v1/list?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
+  }
+  static GetOrgMembers(req: GetOrgMembersRequest, initReq?: fm.InitReq): Promise<GetOrgMembersResponse> {
+    return fm.fetchReq<GetOrgMembersRequest, GetOrgMembersResponse>(`/gapi/org/v1/members?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
   }
   static CreateTeam(req: CreateTeamRequest, initReq?: fm.InitReq): Promise<CreateTeamResponse> {
     return fm.fetchReq<CreateTeamRequest, CreateTeamResponse>(`/gapi/team/v1/create`, {...initReq, method: "POST"})
@@ -72,5 +91,8 @@ export class TeamService {
   }
   static UpdateTeamInfo(req: UpdateTeamInfoRequest, initReq?: fm.InitReq): Promise<UpdateTeamInfoResponse> {
     return fm.fetchReq<UpdateTeamInfoRequest, UpdateTeamInfoResponse>(`/gapi/team/v1/info`, {...initReq, method: "PUT"})
+  }
+  static GetTeamMembers(req: GetTeamMembersRequest, initReq?: fm.InitReq): Promise<GetTeamMembersResponse> {
+    return fm.fetchReq<GetTeamMembersRequest, GetTeamMembersResponse>(`/gapi/team/v1/members?${fm.renderURLSearchParams(req, [])}`, {...initReq, method: "GET"})
   }
 }
