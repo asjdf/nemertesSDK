@@ -19,200 +19,200 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	TeamService_CreateProject_FullMethodName     = "/project.v1.TeamService/CreateProject"
-	TeamService_GetProjectList_FullMethodName    = "/project.v1.TeamService/GetProjectList"
-	TeamService_GetProjectInfo_FullMethodName    = "/project.v1.TeamService/GetProjectInfo"
-	TeamService_UpdateProjectInfo_FullMethodName = "/project.v1.TeamService/UpdateProjectInfo"
+	ProjectService_CreateProject_FullMethodName     = "/project.v1.ProjectService/CreateProject"
+	ProjectService_GetProjectList_FullMethodName    = "/project.v1.ProjectService/GetProjectList"
+	ProjectService_GetProjectInfo_FullMethodName    = "/project.v1.ProjectService/GetProjectInfo"
+	ProjectService_UpdateProjectInfo_FullMethodName = "/project.v1.ProjectService/UpdateProjectInfo"
 )
 
-// TeamServiceClient is the client API for TeamService service.
+// ProjectServiceClient is the client API for ProjectService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TeamServiceClient interface {
+type ProjectServiceClient interface {
 	CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*CreateProjectResponse, error)
 	GetProjectList(ctx context.Context, in *GetProjectListRequest, opts ...grpc.CallOption) (*GetProjectListResponse, error)
 	GetProjectInfo(ctx context.Context, in *GetProjectInfoRequest, opts ...grpc.CallOption) (*GetProjectInfoResponse, error)
 	UpdateProjectInfo(ctx context.Context, in *UpdateProjectInfoRequest, opts ...grpc.CallOption) (*UpdateProjectInfoResponse, error)
 }
 
-type teamServiceClient struct {
+type projectServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTeamServiceClient(cc grpc.ClientConnInterface) TeamServiceClient {
-	return &teamServiceClient{cc}
+func NewProjectServiceClient(cc grpc.ClientConnInterface) ProjectServiceClient {
+	return &projectServiceClient{cc}
 }
 
-func (c *teamServiceClient) CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*CreateProjectResponse, error) {
+func (c *projectServiceClient) CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*CreateProjectResponse, error) {
 	out := new(CreateProjectResponse)
-	err := c.cc.Invoke(ctx, TeamService_CreateProject_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ProjectService_CreateProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teamServiceClient) GetProjectList(ctx context.Context, in *GetProjectListRequest, opts ...grpc.CallOption) (*GetProjectListResponse, error) {
+func (c *projectServiceClient) GetProjectList(ctx context.Context, in *GetProjectListRequest, opts ...grpc.CallOption) (*GetProjectListResponse, error) {
 	out := new(GetProjectListResponse)
-	err := c.cc.Invoke(ctx, TeamService_GetProjectList_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ProjectService_GetProjectList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teamServiceClient) GetProjectInfo(ctx context.Context, in *GetProjectInfoRequest, opts ...grpc.CallOption) (*GetProjectInfoResponse, error) {
+func (c *projectServiceClient) GetProjectInfo(ctx context.Context, in *GetProjectInfoRequest, opts ...grpc.CallOption) (*GetProjectInfoResponse, error) {
 	out := new(GetProjectInfoResponse)
-	err := c.cc.Invoke(ctx, TeamService_GetProjectInfo_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ProjectService_GetProjectInfo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teamServiceClient) UpdateProjectInfo(ctx context.Context, in *UpdateProjectInfoRequest, opts ...grpc.CallOption) (*UpdateProjectInfoResponse, error) {
+func (c *projectServiceClient) UpdateProjectInfo(ctx context.Context, in *UpdateProjectInfoRequest, opts ...grpc.CallOption) (*UpdateProjectInfoResponse, error) {
 	out := new(UpdateProjectInfoResponse)
-	err := c.cc.Invoke(ctx, TeamService_UpdateProjectInfo_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ProjectService_UpdateProjectInfo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TeamServiceServer is the server API for TeamService service.
-// All implementations must embed UnimplementedTeamServiceServer
+// ProjectServiceServer is the server API for ProjectService service.
+// All implementations must embed UnimplementedProjectServiceServer
 // for forward compatibility
-type TeamServiceServer interface {
+type ProjectServiceServer interface {
 	CreateProject(context.Context, *CreateProjectRequest) (*CreateProjectResponse, error)
 	GetProjectList(context.Context, *GetProjectListRequest) (*GetProjectListResponse, error)
 	GetProjectInfo(context.Context, *GetProjectInfoRequest) (*GetProjectInfoResponse, error)
 	UpdateProjectInfo(context.Context, *UpdateProjectInfoRequest) (*UpdateProjectInfoResponse, error)
-	mustEmbedUnimplementedTeamServiceServer()
+	mustEmbedUnimplementedProjectServiceServer()
 }
 
-// UnimplementedTeamServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedTeamServiceServer struct {
+// UnimplementedProjectServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedProjectServiceServer struct {
 }
 
-func (UnimplementedTeamServiceServer) CreateProject(context.Context, *CreateProjectRequest) (*CreateProjectResponse, error) {
+func (UnimplementedProjectServiceServer) CreateProject(context.Context, *CreateProjectRequest) (*CreateProjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProject not implemented")
 }
-func (UnimplementedTeamServiceServer) GetProjectList(context.Context, *GetProjectListRequest) (*GetProjectListResponse, error) {
+func (UnimplementedProjectServiceServer) GetProjectList(context.Context, *GetProjectListRequest) (*GetProjectListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProjectList not implemented")
 }
-func (UnimplementedTeamServiceServer) GetProjectInfo(context.Context, *GetProjectInfoRequest) (*GetProjectInfoResponse, error) {
+func (UnimplementedProjectServiceServer) GetProjectInfo(context.Context, *GetProjectInfoRequest) (*GetProjectInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProjectInfo not implemented")
 }
-func (UnimplementedTeamServiceServer) UpdateProjectInfo(context.Context, *UpdateProjectInfoRequest) (*UpdateProjectInfoResponse, error) {
+func (UnimplementedProjectServiceServer) UpdateProjectInfo(context.Context, *UpdateProjectInfoRequest) (*UpdateProjectInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProjectInfo not implemented")
 }
-func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
+func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
 
-// UnsafeTeamServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TeamServiceServer will
+// UnsafeProjectServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProjectServiceServer will
 // result in compilation errors.
-type UnsafeTeamServiceServer interface {
-	mustEmbedUnimplementedTeamServiceServer()
+type UnsafeProjectServiceServer interface {
+	mustEmbedUnimplementedProjectServiceServer()
 }
 
-func RegisterTeamServiceServer(s grpc.ServiceRegistrar, srv TeamServiceServer) {
-	s.RegisterService(&TeamService_ServiceDesc, srv)
+func RegisterProjectServiceServer(s grpc.ServiceRegistrar, srv ProjectServiceServer) {
+	s.RegisterService(&ProjectService_ServiceDesc, srv)
 }
 
-func _TeamService_CreateProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProjectService_CreateProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateProjectRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamServiceServer).CreateProject(ctx, in)
+		return srv.(ProjectServiceServer).CreateProject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamService_CreateProject_FullMethodName,
+		FullMethod: ProjectService_CreateProject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).CreateProject(ctx, req.(*CreateProjectRequest))
+		return srv.(ProjectServiceServer).CreateProject(ctx, req.(*CreateProjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeamService_GetProjectList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProjectService_GetProjectList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetProjectListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamServiceServer).GetProjectList(ctx, in)
+		return srv.(ProjectServiceServer).GetProjectList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamService_GetProjectList_FullMethodName,
+		FullMethod: ProjectService_GetProjectList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).GetProjectList(ctx, req.(*GetProjectListRequest))
+		return srv.(ProjectServiceServer).GetProjectList(ctx, req.(*GetProjectListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeamService_GetProjectInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProjectService_GetProjectInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetProjectInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamServiceServer).GetProjectInfo(ctx, in)
+		return srv.(ProjectServiceServer).GetProjectInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamService_GetProjectInfo_FullMethodName,
+		FullMethod: ProjectService_GetProjectInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).GetProjectInfo(ctx, req.(*GetProjectInfoRequest))
+		return srv.(ProjectServiceServer).GetProjectInfo(ctx, req.(*GetProjectInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeamService_UpdateProjectInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProjectService_UpdateProjectInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateProjectInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamServiceServer).UpdateProjectInfo(ctx, in)
+		return srv.(ProjectServiceServer).UpdateProjectInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamService_UpdateProjectInfo_FullMethodName,
+		FullMethod: ProjectService_UpdateProjectInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).UpdateProjectInfo(ctx, req.(*UpdateProjectInfoRequest))
+		return srv.(ProjectServiceServer).UpdateProjectInfo(ctx, req.(*UpdateProjectInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
+// ProjectService_ServiceDesc is the grpc.ServiceDesc for ProjectService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TeamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "project.v1.TeamService",
-	HandlerType: (*TeamServiceServer)(nil),
+var ProjectService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "project.v1.ProjectService",
+	HandlerType: (*ProjectServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateProject",
-			Handler:    _TeamService_CreateProject_Handler,
+			Handler:    _ProjectService_CreateProject_Handler,
 		},
 		{
 			MethodName: "GetProjectList",
-			Handler:    _TeamService_GetProjectList_Handler,
+			Handler:    _ProjectService_GetProjectList_Handler,
 		},
 		{
 			MethodName: "GetProjectInfo",
-			Handler:    _TeamService_GetProjectInfo_Handler,
+			Handler:    _ProjectService_GetProjectInfo_Handler,
 		},
 		{
 			MethodName: "UpdateProjectInfo",
-			Handler:    _TeamService_UpdateProjectInfo_Handler,
+			Handler:    _ProjectService_UpdateProjectInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -39,7 +39,7 @@ export type UpdateProjectInfoResponse = {
   project?: ProjectV1Project.Project
 }
 
-export class TeamService {
+export class ProjectService {
   static CreateProject(req: CreateProjectRequest, initReq?: fm.InitReq): Promise<CreateProjectResponse> {
     return fm.fetchReq<CreateProjectRequest, CreateProjectResponse>(`/gapi/team/v1/project/create`, {...initReq, method: "POST"})
   }

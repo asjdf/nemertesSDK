@@ -6,7 +6,7 @@ import "project/v1/project.proto";
 
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/project/v1;projectV1";
 
-service TeamService {
+service ProjectService {
   rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {
     // CreateProject creates a project.
     option (google.api.http) = {post: "/gapi/team/v1/project/create"};

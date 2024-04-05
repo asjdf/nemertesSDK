@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "TeamService"
+      "name": "ProjectService"
     }
   ],
   "consumes": [
@@ -18,7 +18,7 @@
   "paths": {
     "/gapi/team/v1/project/create": {
       "post": {
-        "operationId": "TeamService_CreateProject",
+        "operationId": "ProjectService_CreateProject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -60,13 +60,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "ProjectService"
         ]
       }
     },
     "/gapi/team/v1/project/info": {
       "get": {
-        "operationId": "TeamService_GetProjectInfo",
+        "operationId": "ProjectService_GetProjectInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -91,11 +91,11 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "ProjectService"
         ]
       },
       "put": {
-        "operationId": "TeamService_UpdateProjectInfo",
+        "operationId": "ProjectService_UpdateProjectInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -131,13 +131,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "ProjectService"
         ]
       }
     },
     "/gapi/team/v1/project/list": {
       "get": {
-        "operationId": "TeamService_GetProjectList",
+        "operationId": "ProjectService_GetProjectList",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -161,7 +161,7 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "ProjectService"
         ]
       }
     }
