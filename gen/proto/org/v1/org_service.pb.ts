@@ -81,7 +81,7 @@ export type GetTeamMembersResponse = {
   member?: TeamMemberDetail[]
 }
 
-export class TeamService {
+export class OrgService {
   static CreateOrg(req: CreateOrgRequest, initReq?: fm.InitReq): Promise<CreateOrgResponse> {
     return fm.fetchReq<CreateOrgRequest, CreateOrgResponse>(`/gapi/org/v1/create`, {...initReq, method: "POST"})
   }

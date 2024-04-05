@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "TeamService"
+      "name": "OrgService"
     }
   ],
   "consumes": [
@@ -18,7 +18,7 @@
   "paths": {
     "/gapi/org/v1/create": {
       "post": {
-        "operationId": "TeamService_CreateOrg",
+        "operationId": "OrgService_CreateOrg",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -48,13 +48,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/org/v1/list": {
       "get": {
-        "operationId": "TeamService_GetOrgList",
+        "operationId": "OrgService_GetOrgList",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -79,13 +79,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/org/v1/members": {
       "get": {
-        "operationId": "TeamService_GetOrgMembers",
+        "operationId": "OrgService_GetOrgMembers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -110,13 +110,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/team/v1/create": {
       "post": {
-        "operationId": "TeamService_CreateTeam",
+        "operationId": "OrgService_CreateTeam",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -152,13 +152,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/team/v1/info": {
       "get": {
-        "operationId": "TeamService_GetTeamInfo",
+        "operationId": "OrgService_GetTeamInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -183,11 +183,11 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       },
       "put": {
-        "operationId": "TeamService_UpdateTeamInfo",
+        "operationId": "OrgService_UpdateTeamInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -223,13 +223,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/team/v1/list": {
       "get": {
-        "operationId": "TeamService_GetTeamList",
+        "operationId": "OrgService_GetTeamList",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -254,13 +254,13 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     },
     "/gapi/team/v1/members": {
       "get": {
-        "operationId": "TeamService_GetTeamMembers",
+        "operationId": "OrgService_GetTeamMembers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -284,7 +284,7 @@
           }
         ],
         "tags": [
-          "TeamService"
+          "OrgService"
         ]
       }
     }

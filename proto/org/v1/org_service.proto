@@ -7,7 +7,7 @@ import "user/v1/user.proto";
 
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/org/v1;orgV1";
 
-service TeamService {
+service OrgService {
   rpc CreateOrg(CreateOrgRequest) returns (CreateOrgResponse) {
     // CreateOrg creates an org.
     option (google.api.http) = {post: "/gapi/org/v1/create"};
