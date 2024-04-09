@@ -19,10 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ProjectService_CreateProject_FullMethodName     = "/project.v1.ProjectService/CreateProject"
-	ProjectService_GetProjectList_FullMethodName    = "/project.v1.ProjectService/GetProjectList"
-	ProjectService_GetProjectInfo_FullMethodName    = "/project.v1.ProjectService/GetProjectInfo"
-	ProjectService_UpdateProjectInfo_FullMethodName = "/project.v1.ProjectService/UpdateProjectInfo"
+	ProjectService_CreateProject_FullMethodName          = "/project.v1.ProjectService/CreateProject"
+	ProjectService_GetProjectList_FullMethodName         = "/project.v1.ProjectService/GetProjectList"
+	ProjectService_GetProjectInfo_FullMethodName         = "/project.v1.ProjectService/GetProjectInfo"
+	ProjectService_UpdateProjectInfo_FullMethodName      = "/project.v1.ProjectService/UpdateProjectInfo"
+	ProjectService_DeleteProject_FullMethodName          = "/project.v1.ProjectService/DeleteProject"
+	ProjectService_GetHostList_FullMethodName            = "/project.v1.ProjectService/GetHostList"
+	ProjectService_GetHostInfo_FullMethodName            = "/project.v1.ProjectService/GetHostInfo"
+	ProjectService_GetProfileList_FullMethodName         = "/project.v1.ProjectService/GetProfileList"
+	ProjectService_GetProfileListMetaList_FullMethodName = "/project.v1.ProjectService/GetProfileListMetaList"
 )
 
 // ProjectServiceClient is the client API for ProjectService service.
@@ -33,6 +38,11 @@ type ProjectServiceClient interface {
 	GetProjectList(ctx context.Context, in *GetProjectListRequest, opts ...grpc.CallOption) (*GetProjectListResponse, error)
 	GetProjectInfo(ctx context.Context, in *GetProjectInfoRequest, opts ...grpc.CallOption) (*GetProjectInfoResponse, error)
 	UpdateProjectInfo(ctx context.Context, in *UpdateProjectInfoRequest, opts ...grpc.CallOption) (*UpdateProjectInfoResponse, error)
+	DeleteProject(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*DeleteProjectResponse, error)
+	GetHostList(ctx context.Context, in *GetHostListRequest, opts ...grpc.CallOption) (*GetHostListResponse, error)
+	GetHostInfo(ctx context.Context, in *GetHostInfoRequest, opts ...grpc.CallOption) (*GetHostInfoResponse, error)
+	GetProfileList(ctx context.Context, in *GetProfileListRequest, opts ...grpc.CallOption) (*GetProfileListResponse, error)
+	GetProfileListMetaList(ctx context.Context, in *GetProfileListMetaListRequest, opts ...grpc.CallOption) (*GetProfileListMetaListResponse, error)
 }
 
 type projectServiceClient struct {
@@ -79,6 +89,51 @@ func (c *projectServiceClient) UpdateProjectInfo(ctx context.Context, in *Update
 	return out, nil
 }
 
+func (c *projectServiceClient) DeleteProject(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*DeleteProjectResponse, error) {
+	out := new(DeleteProjectResponse)
+	err := c.cc.Invoke(ctx, ProjectService_DeleteProject_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) GetHostList(ctx context.Context, in *GetHostListRequest, opts ...grpc.CallOption) (*GetHostListResponse, error) {
+	out := new(GetHostListResponse)
+	err := c.cc.Invoke(ctx, ProjectService_GetHostList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) GetHostInfo(ctx context.Context, in *GetHostInfoRequest, opts ...grpc.CallOption) (*GetHostInfoResponse, error) {
+	out := new(GetHostInfoResponse)
+	err := c.cc.Invoke(ctx, ProjectService_GetHostInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) GetProfileList(ctx context.Context, in *GetProfileListRequest, opts ...grpc.CallOption) (*GetProfileListResponse, error) {
+	out := new(GetProfileListResponse)
+	err := c.cc.Invoke(ctx, ProjectService_GetProfileList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) GetProfileListMetaList(ctx context.Context, in *GetProfileListMetaListRequest, opts ...grpc.CallOption) (*GetProfileListMetaListResponse, error) {
+	out := new(GetProfileListMetaListResponse)
+	err := c.cc.Invoke(ctx, ProjectService_GetProfileListMetaList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProjectServiceServer is the server API for ProjectService service.
 // All implementations must embed UnimplementedProjectServiceServer
 // for forward compatibility
@@ -87,6 +142,11 @@ type ProjectServiceServer interface {
 	GetProjectList(context.Context, *GetProjectListRequest) (*GetProjectListResponse, error)
 	GetProjectInfo(context.Context, *GetProjectInfoRequest) (*GetProjectInfoResponse, error)
 	UpdateProjectInfo(context.Context, *UpdateProjectInfoRequest) (*UpdateProjectInfoResponse, error)
+	DeleteProject(context.Context, *DeleteProjectRequest) (*DeleteProjectResponse, error)
+	GetHostList(context.Context, *GetHostListRequest) (*GetHostListResponse, error)
+	GetHostInfo(context.Context, *GetHostInfoRequest) (*GetHostInfoResponse, error)
+	GetProfileList(context.Context, *GetProfileListRequest) (*GetProfileListResponse, error)
+	GetProfileListMetaList(context.Context, *GetProfileListMetaListRequest) (*GetProfileListMetaListResponse, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
 
@@ -105,6 +165,21 @@ func (UnimplementedProjectServiceServer) GetProjectInfo(context.Context, *GetPro
 }
 func (UnimplementedProjectServiceServer) UpdateProjectInfo(context.Context, *UpdateProjectInfoRequest) (*UpdateProjectInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProjectInfo not implemented")
+}
+func (UnimplementedProjectServiceServer) DeleteProject(context.Context, *DeleteProjectRequest) (*DeleteProjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProject not implemented")
+}
+func (UnimplementedProjectServiceServer) GetHostList(context.Context, *GetHostListRequest) (*GetHostListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHostList not implemented")
+}
+func (UnimplementedProjectServiceServer) GetHostInfo(context.Context, *GetHostInfoRequest) (*GetHostInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHostInfo not implemented")
+}
+func (UnimplementedProjectServiceServer) GetProfileList(context.Context, *GetProfileListRequest) (*GetProfileListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileList not implemented")
+}
+func (UnimplementedProjectServiceServer) GetProfileListMetaList(context.Context, *GetProfileListMetaListRequest) (*GetProfileListMetaListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileListMetaList not implemented")
 }
 func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
 
@@ -191,6 +266,96 @@ func _ProjectService_UpdateProjectInfo_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectService_DeleteProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteProjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_DeleteProject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, req.(*DeleteProjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_GetHostList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHostListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetHostList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_GetHostList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetHostList(ctx, req.(*GetHostListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_GetHostInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHostInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetHostInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_GetHostInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetHostInfo(ctx, req.(*GetHostInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_GetProfileList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetProfileList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_GetProfileList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetProfileList(ctx, req.(*GetProfileListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_GetProfileListMetaList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileListMetaListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).GetProfileListMetaList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_GetProfileListMetaList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).GetProfileListMetaList(ctx, req.(*GetProfileListMetaListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProjectService_ServiceDesc is the grpc.ServiceDesc for ProjectService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -213,6 +378,26 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateProjectInfo",
 			Handler:    _ProjectService_UpdateProjectInfo_Handler,
+		},
+		{
+			MethodName: "DeleteProject",
+			Handler:    _ProjectService_DeleteProject_Handler,
+		},
+		{
+			MethodName: "GetHostList",
+			Handler:    _ProjectService_GetHostList_Handler,
+		},
+		{
+			MethodName: "GetHostInfo",
+			Handler:    _ProjectService_GetHostInfo_Handler,
+		},
+		{
+			MethodName: "GetProfileList",
+			Handler:    _ProjectService_GetProfileList_Handler,
+		},
+		{
+			MethodName: "GetProfileListMetaList",
+			Handler:    _ProjectService_GetProfileListMetaList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

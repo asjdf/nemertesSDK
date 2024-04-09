@@ -1,10 +1,48 @@
 syntax = "proto3";
 package project.v1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/project/v1;projectV1";
 
 message Project {
   string id = 1;
   string orgId = 2;
   string name = 3;
+}
+
+message Host {
+  string id = 1;
+  string orgId = 2;
+  string projectId = 3;
+  google.protobuf.Timestamp createdAt = 4;
+  google.protobuf.Timestamp updatedAt = 5;
+
+  string name = 11;
+  string serverName = 12;
+  string version = 13;
+  string environment = 14;
+}
+
+message Profile {
+  string id = 1;
+  string orgId = 2;
+  string projectId = 3;
+  string hostId = 4;
+  google.protobuf.Timestamp createdAt = 5;
+  google.protobuf.Timestamp updatedAt = 6;
+
+  string compatibleHash = 11;
+  google.protobuf.Timestamp startedAt = 12;
+  google.protobuf.Timestamp endedAt = 13;
+}
+
+message ProfileMeta {
+  string id = 1;
+  string profileId = 4;
+  google.protobuf.Timestamp createdAt = 5;
+  google.protobuf.Timestamp updatedAt = 6;
+
+  string sampleType = 11;
+  string sampleUnit = 12;
 }

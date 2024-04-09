@@ -2,6 +2,7 @@ syntax = "proto3";
 package project.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "project/v1/project.proto";
 
 option go_package = "github.com/asjdf/nemertesSDK/gen/proto/project/v1;projectV1";
@@ -28,6 +29,31 @@ service ProjectService {
       put: "/gapi/team/v1/project/info"
       body: "*"
     };
+  }
+  rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse) {
+    // DeleteProject deletes the project.
+    option (google.api.http) = {
+      post: "/gapi/team/v1/project/delete"
+      body: "*"
+    };
+  }
+
+  rpc GetHostList(GetHostListRequest) returns (GetHostListResponse) {
+    // GetHostList returns a list of hosts in the project.
+    option (google.api.http) = {get: "/gapi/team/v1/project/host/list"};
+  }
+  rpc GetHostInfo(GetHostInfoRequest) returns (GetHostInfoResponse) {
+    // GetHostInfo returns the host info.
+    option (google.api.http) = {get: "/gapi/team/v1/project/host/info"};
+  }
+
+  rpc GetProfileList(GetProfileListRequest) returns (GetProfileListResponse) {
+    // GetProfileList returns a list of profiles in the timezone.
+    option (google.api.http) = {get: "/gapi/team/v1/project/profile/list"};
+  }
+  rpc GetProfileListMetaList(GetProfileListMetaListRequest) returns (GetProfileListMetaListResponse) {
+    // GetProfileListMetaList returns a list of current profile list's meta list.
+    option (google.api.http) = {get: "/gapi/team/v1/project/profile/list/meta/list"};
   }
 }
 
@@ -59,4 +85,45 @@ message UpdateProjectInfoRequest {
 }
 message UpdateProjectInfoResponse {
   Project project = 1;
+}
+
+message DeleteProjectRequest {
+  string id = 1; // project id
+}
+message DeleteProjectResponse {}
+
+message GetHostListRequest {
+  string projectId = 1;
+}
+message GetHostListResponse {
+  repeated Host hosts = 1;
+}
+
+message GetHostInfoRequest {
+  string projectId = 1;
+  string hostId = 2;
+}
+message GetHostInfoResponse {
+  Host host = 1;
+}
+
+message GetProfileListRequest {
+  string hostId = 1;
+  google.protobuf.Timestamp startTime = 2;
+  google.protobuf.Timestamp endTime = 3;
+
+  string sampleType = 4;
+  string sampleUnit = 5;
+}
+message GetProfileListResponse {
+  repeated Profile profiles = 1;
+}
+
+message GetProfileListMetaListRequest {
+  string hostId = 1;
+  google.protobuf.Timestamp startTime = 2;
+  google.protobuf.Timestamp endTime = 3;
+}
+message GetProfileListMetaListResponse {
+  repeated ProfileMeta list = 1;
 }
