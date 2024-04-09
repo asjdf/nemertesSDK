@@ -502,12 +502,6 @@
         "id": {
           "type": "string"
         },
-        "orgId": {
-          "type": "string"
-        },
-        "projectId": {
-          "type": "string"
-        },
         "hostId": {
           "type": "string"
         },

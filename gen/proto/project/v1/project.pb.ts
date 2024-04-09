@@ -24,8 +24,6 @@ export type Host = {
 
 export type Profile = {
   id?: string
-  orgId?: string
-  projectId?: string
   hostId?: string
   createdAt?: Date
   updatedAt?: Date
