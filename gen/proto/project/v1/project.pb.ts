@@ -39,4 +39,5 @@ export type ProfileMeta = {
   updatedAt?: Date
   sampleType?: string
   sampleUnit?: string
+  totalValue?: string
 }

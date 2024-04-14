@@ -548,6 +548,10 @@
         },
         "sampleUnit": {
           "type": "string"
+        },
+        "totalValue": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
