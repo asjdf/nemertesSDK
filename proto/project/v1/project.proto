@@ -45,3 +45,8 @@ message ProfileMeta {
   string sampleUnit = 12;
   int64 totalValue = 13;
 }
+
+message ProfileWithMeta{
+  Profile profile = 1;
+  repeated ProfileMeta metas = 2;
+}

@@ -72,7 +72,7 @@ export type GetProfileListRequest = {
 }
 
 export type GetProfileListResponse = {
-  profiles?: ProjectV1Project.Profile[]
+  profiles?: ProjectV1Project.ProfileWithMeta[]
 }
 
 export type GetProfileListMetaListRequest = {

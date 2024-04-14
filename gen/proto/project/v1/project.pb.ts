@@ -41,3 +41,8 @@ export type ProfileMeta = {
   sampleUnit?: string
   totalValue?: string
 }
+
+export type ProfileWithMeta = {
+  profile?: Profile
+  metas?: ProfileMeta[]
+}

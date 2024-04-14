@@ -437,7 +437,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1Profile"
+            "$ref": "#/definitions/v1ProfileWithMeta"
           }
         }
       }
@@ -552,6 +552,21 @@
         "totalValue": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "v1ProfileWithMeta": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1Profile"
+        },
+        "metas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ProfileMeta"
+          }
         }
       }
     },

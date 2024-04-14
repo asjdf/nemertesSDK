@@ -116,7 +116,7 @@ message GetProfileListRequest {
   string sampleUnit = 5;
 }
 message GetProfileListResponse {
-  repeated Profile profiles = 1;
+  repeated ProfileWithMeta profiles = 1;
 }
 
 message GetProfileListMetaListRequest {

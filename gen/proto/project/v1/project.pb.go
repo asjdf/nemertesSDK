@@ -385,6 +385,61 @@ func (x *ProfileMeta) GetTotalValue() int64 {
 	return 0
 }
 
+type ProfileWithMeta struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Profile *Profile       `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	Metas   []*ProfileMeta `protobuf:"bytes,2,rep,name=metas,proto3" json:"metas,omitempty"`
+}
+
+func (x *ProfileWithMeta) Reset() {
+	*x = ProfileWithMeta{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_project_v1_project_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProfileWithMeta) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProfileWithMeta) ProtoMessage() {}
+
+func (x *ProfileWithMeta) ProtoReflect() protoreflect.Message {
+	mi := &file_project_v1_project_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProfileWithMeta.ProtoReflect.Descriptor instead.
+func (*ProfileWithMeta) Descriptor() ([]byte, []int) {
+	return file_project_v1_project_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ProfileWithMeta) GetProfile() *Profile {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
+func (x *ProfileWithMeta) GetMetas() []*ProfileMeta {
+	if x != nil {
+		return x.Metas
+	}
+	return nil
+}
+
 var File_project_v1_project_proto protoreflect.FileDescriptor
 
 var file_project_v1_project_proto_rawDesc = []byte{
@@ -452,12 +507,19 @@ var file_project_v1_project_proto_rawDesc = []byte{
 	0x1e, 0x0a, 0x0a, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x55, 0x6e, 0x69, 0x74, 0x18, 0x0c, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x55, 0x6e, 0x69, 0x74, 0x12,
 	0x1e, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x0d, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x42,
-	0x3d, 0x5a, 0x3b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x73,
-	0x6a, 0x64, 0x66, 0x2f, 0x6e, 0x65, 0x6d, 0x65, 0x72, 0x74, 0x65, 0x73, 0x53, 0x44, 0x4b, 0x2f,
-	0x67, 0x65, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63,
-	0x74, 0x2f, 0x76, 0x31, 0x3b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x56, 0x31, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x01, 0x28, 0x03, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22,
+	0x6f, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x57, 0x69, 0x74, 0x68, 0x4d, 0x65,
+	0x74, 0x61, 0x12, 0x2d, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x76, 0x31,
+	0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c,
+	0x65, 0x12, 0x2d, 0x0a, 0x05, 0x6d, 0x65, 0x74, 0x61, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x17, 0x2e, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x05, 0x6d, 0x65, 0x74, 0x61, 0x73,
+	0x42, 0x3d, 0x5a, 0x3b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61,
+	0x73, 0x6a, 0x64, 0x66, 0x2f, 0x6e, 0x65, 0x6d, 0x65, 0x72, 0x74, 0x65, 0x73, 0x53, 0x44, 0x4b,
+	0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x6a, 0x65,
+	0x63, 0x74, 0x2f, 0x76, 0x31, 0x3b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x56, 0x31, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -472,28 +534,31 @@ func file_project_v1_project_proto_rawDescGZIP() []byte {
 	return file_project_v1_project_proto_rawDescData
 }
 
-var file_project_v1_project_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_project_v1_project_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_project_v1_project_proto_goTypes = []interface{}{
 	(*Project)(nil),               // 0: project.v1.Project
 	(*Host)(nil),                  // 1: project.v1.Host
 	(*Profile)(nil),               // 2: project.v1.Profile
 	(*ProfileMeta)(nil),           // 3: project.v1.ProfileMeta
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*ProfileWithMeta)(nil),       // 4: project.v1.ProfileWithMeta
+	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
 }
 var file_project_v1_project_proto_depIdxs = []int32{
-	4, // 0: project.v1.Host.createdAt:type_name -> google.protobuf.Timestamp
-	4, // 1: project.v1.Host.updatedAt:type_name -> google.protobuf.Timestamp
-	4, // 2: project.v1.Profile.createdAt:type_name -> google.protobuf.Timestamp
-	4, // 3: project.v1.Profile.updatedAt:type_name -> google.protobuf.Timestamp
-	4, // 4: project.v1.Profile.startedAt:type_name -> google.protobuf.Timestamp
-	4, // 5: project.v1.Profile.endedAt:type_name -> google.protobuf.Timestamp
-	4, // 6: project.v1.ProfileMeta.createdAt:type_name -> google.protobuf.Timestamp
-	4, // 7: project.v1.ProfileMeta.updatedAt:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	5,  // 0: project.v1.Host.createdAt:type_name -> google.protobuf.Timestamp
+	5,  // 1: project.v1.Host.updatedAt:type_name -> google.protobuf.Timestamp
+	5,  // 2: project.v1.Profile.createdAt:type_name -> google.protobuf.Timestamp
+	5,  // 3: project.v1.Profile.updatedAt:type_name -> google.protobuf.Timestamp
+	5,  // 4: project.v1.Profile.startedAt:type_name -> google.protobuf.Timestamp
+	5,  // 5: project.v1.Profile.endedAt:type_name -> google.protobuf.Timestamp
+	5,  // 6: project.v1.ProfileMeta.createdAt:type_name -> google.protobuf.Timestamp
+	5,  // 7: project.v1.ProfileMeta.updatedAt:type_name -> google.protobuf.Timestamp
+	2,  // 8: project.v1.ProfileWithMeta.profile:type_name -> project.v1.Profile
+	3,  // 9: project.v1.ProfileWithMeta.metas:type_name -> project.v1.ProfileMeta
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_project_v1_project_proto_init() }
@@ -550,6 +615,18 @@ func file_project_v1_project_proto_init() {
 				return nil
 			}
 		}
+		file_project_v1_project_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ProfileWithMeta); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -557,7 +634,7 @@ func file_project_v1_project_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_project_v1_project_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
